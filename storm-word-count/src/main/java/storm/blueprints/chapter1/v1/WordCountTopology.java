@@ -29,12 +29,12 @@ public class WordCountTopology {
         builder.setBolt(SPLIT_BOLT_ID, splitBolt, 2)
                 // 并行4个任务
                 .setNumTasks(4)
-                // 确立订阅关系 shuffleGrouping() 方 法 告 诉 Storm，要 将 类 SentenceSpout 发射的 tuple 随机均匀的分发给 SplitSentenceBolt 的实例
+                // 确立订阅关系 shuffleGrouping() 方 法 告 诉 Storm，要将类 SentenceSpout 发射的 tuple 随机均匀的分发给 SplitSentenceBolt 的实例
                 .shuffleGrouping(SENTENCE_SPOUT_ID);
         // SplitSentenceBolt --> WordCountBolt
         builder.setBolt(COUNT_BOLT_ID, countBolt, 4)
                 .setNumTasks(4)
-                // fieldsGrouping() 方法来保证所有“ word”字段值相同的 tuple 会 被路由到同一个 WordCountBolt 实例中
+                // fieldsGrouping() 方法来保证所有“ word”字段值相同的 tuple会被路由到同一个 WordCountBolt 实例中
                 .fieldsGrouping(SPLIT_BOLT_ID, new Fields("word"));
         // WordCountBolt --> ReportBolt
         builder.setBolt(REPORT_BOLT_ID, reportBolt)

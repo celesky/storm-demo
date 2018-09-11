@@ -22,7 +22,7 @@ public class WordCountBolt extends BaseRichBolt{
      * 大部分实例变量通常是在 prepare() 方法中进行实例化，
      * 这个设计模式是由 topology 的部署方式决定的
      *
-     * 当 topology 发布时，所有的 bolt 和 spout 组件首先会进行序列化，然 后通过网络发送到集群中。
+     * 当 topology 发布时，所有的 bolt 和 spout 组件首先会进行序列化，然后通过网络发送到集群中。
      * 如果 spout 或者 bolt 在序列化之前(比如说在构造函数中生成) 实例化了任何无法序列化的实例变量，
      * 在进行序列化时会抛出 NotSerializableException 异 常，topology 就会部署失败
      *
