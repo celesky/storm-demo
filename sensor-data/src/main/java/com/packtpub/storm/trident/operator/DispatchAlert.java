@@ -5,6 +5,9 @@ import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.tuple.TridentTuple;
 
+/**
+ * 发布一个告警
+ */
 public class DispatchAlert extends BaseFunction {
     private static final long serialVersionUID = 1L;
 

@@ -10,6 +10,12 @@ import storm.trident.tuple.TridentTuple;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 数赋 值一个表示小时的时间戳，
+ * 并且增加一个 key cityDiseaseHour 到 tuple 的字段中，
+ * 这个 key 包括城市、小时和疾病代码
+ * 后续就使用这个 key 进行分组统计并使用 persistAggregate 函数对统计量持久性存储
+ */
 public class HourAssignment extends BaseFunction {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = LoggerFactory.getLogger(HourAssignment.class);

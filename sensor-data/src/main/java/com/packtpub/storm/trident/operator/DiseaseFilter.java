@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import storm.trident.operation.BaseFilter;
 import storm.trident.tuple.TridentTuple;
 
+/**
+ * 过滤掉不关心的疾病事件
+ */
 public class DiseaseFilter extends BaseFilter {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = LoggerFactory.getLogger(DiseaseFilter.class);

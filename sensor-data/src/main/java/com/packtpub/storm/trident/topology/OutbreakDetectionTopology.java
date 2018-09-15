@@ -13,12 +13,17 @@ import storm.trident.operation.builtin.Count;
 
 public class OutbreakDetectionTopology {
 
+    /**
+     * 通常，应用运算需要声明一个输入域集合和一个输出域集合，也就是 funcition 域
+     * @return
+     */
     public static StormTopology buildTopology() {
         TridentTopology topology = new TridentTopology();
         DiagnosisEventSpout spout = new DiagnosisEventSpout();
         Stream inputStream = topology.newStream("event", spout);
 
         inputStream.each(new Fields("event"), new DiseaseFilter())
+                // CityAssignment 会在 event 字段上运算并且增加一个叫做 city 的新字段， 这个字段会附在 tuple 中向后发射
                 .each(new Fields("event"), new CityAssignment(), new Fields("city"))
                 .each(new Fields("event", "city"), new HourAssignment(), new Fields("hour", "cityDiseaseHour"))
                 .groupBy(new Fields("cityDiseaseHour"))

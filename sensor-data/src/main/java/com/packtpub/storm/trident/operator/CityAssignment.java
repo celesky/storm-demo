@@ -13,6 +13,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ *  根据坐标匹配一个城市名
+ *  并传达出去
+ *
+ *  Tridentfunction 只能添加数据
+ */
 public class CityAssignment extends BaseFunction {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = LoggerFactory.getLogger(CityAssignment.class);

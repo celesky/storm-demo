@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 在我们的 topology 中，实际上没有固化存储数据。我们简单地将数据放入 Concurrent HashMap 中。
+ * 显然，对于多个机器的环境下，这样是不可行的。
+ * 然而 BackingMap 是一个 非常巧妙的抽象。
+ * 只需要将传入 MapState 对象的 backingmap 的实例替换就可以更换持久 层的实现
+ */
 public class OutbreakTrendBackingMap implements IBackingMap<Long> {
     private static final Logger LOG = LoggerFactory.getLogger(OutbreakTrendBackingMap.class);
     Map<String, Long> storage = new ConcurrentHashMap<String, Long>();

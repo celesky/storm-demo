@@ -11,6 +11,10 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import storm.blueprints.utils.Utils;
 
+/**
+ * 锚定
+ *
+ */
 public class SentenceSpout extends BaseRichSpout {
     
     
@@ -35,6 +39,7 @@ public class SentenceSpout extends BaseRichSpout {
         this.pending = new ConcurrentHashMap<UUID, Values>();
     }
 
+    @Override
     public void nextTuple() {
         Values values = new Values(sentences[index]);
         UUID msgId = UUID.randomUUID();
@@ -47,10 +52,12 @@ public class SentenceSpout extends BaseRichSpout {
         Utils.waitForMillis(1);
     }
 
+    @Override
     public void ack(Object msgId) {
         this.pending.remove(msgId);
     }
 
+    @Override
     public void fail(Object msgId) {
         this.collector.emit(this.pending.get(msgId), msgId);
     }    

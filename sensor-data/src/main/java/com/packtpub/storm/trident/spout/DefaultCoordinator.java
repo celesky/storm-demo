@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 /**
  * 负责管理批次和元数据
+ * BatchCoordinator 类作为一个 Storm Bolt 运行在一个单线程中。
+ * Storm 会在 ZooKeeper 中持久化存储这个元数据。当事务处理完成时会通知到对应的 coordinator
  */
 public class DefaultCoordinator implements BatchCoordinator<Long>, Serializable {
     private static final long serialVersionUID = 1L;
