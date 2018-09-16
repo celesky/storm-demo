@@ -11,6 +11,7 @@
     <modules>
         <module>storm-word-count</module>
         <module>sensor-data</module>
+        <module>trend</module>
     </modules>
 
 
